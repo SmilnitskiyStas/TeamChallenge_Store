@@ -7,6 +7,7 @@ namespace TeamChallengeProject_Shop.Models
         [Key]
         [Required]
         public int ProductId { get; set; }
+        public int StoreId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -22,5 +23,7 @@ namespace TeamChallengeProject_Shop.Models
         [Required]
         public DateTime Created_at { get; set; }
         public DateTime Delete_at { get; set; }
+
+        public Store Store { get; set; }
     }
 }

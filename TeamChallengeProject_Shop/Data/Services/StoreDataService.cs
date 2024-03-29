@@ -15,12 +15,14 @@ namespace TeamChallengeProject_Shop.Data.Services
         public Store CreateData(Store store)
         {
             _db.Stores.Add(store);
+            _db.SaveChanges();
             return _db.Stores.Where(s => s.Name == store.Name).FirstOrDefault();
         }
 
         public bool DeleteData(Store store)
         {
             _db.Stores.Remove(store);
+            _db.SaveChanges();
             return _db.Stores.Where(s => s.Equals(store)).Any() == null ? true : false;
         }
 
@@ -47,6 +49,7 @@ namespace TeamChallengeProject_Shop.Data.Services
         public Store UpdateData(Store store)
         {
             _db.Stores.Update(store);
+            _db.SaveChanges();
             return _db.Stores.Where(s => s.Name == store.Name).FirstOrDefault();
         }
     }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using TeamChallengeProject_Shop.Config;
 using TeamChallengeProject_Shop.Models;
 
 namespace TeamChallengeProject_Shop.Data
@@ -11,5 +13,12 @@ namespace TeamChallengeProject_Shop.Data
         }
 
         public DbSet<Store> Stores { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new StoreConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        }
     }
 }
