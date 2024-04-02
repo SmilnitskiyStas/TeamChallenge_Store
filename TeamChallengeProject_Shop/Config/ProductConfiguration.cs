@@ -14,8 +14,8 @@ namespace TeamChallengeProject_Shop.Config
             builder.Property(p => p.Description).HasColumnName("Description").HasColumnType("text");
             builder.Property(p => p.Price).HasColumnName("Price").HasColumnType("money").IsRequired();
             builder.Property(p => p.Quantity).HasColumnName("Quantity").HasColumnType("int").IsRequired();
-            builder.Property(p => p.PickUp).HasColumnName("PickUp").HasColumnType("bool").IsRequired();
-            builder.Property(p => p.Delivery).HasColumnName("Delivery").HasColumnType("bool").IsRequired();
+            builder.Property(p => p.PickUp).HasColumnName("PickUp").HasColumnType("tinyint").IsRequired();
+            builder.Property(p => p.Delivery).HasColumnName("Delivery").HasColumnType("tinyint").IsRequired();
             builder.Property(p => p.Created_at).HasColumnName("Created_at").HasColumnType("datetime").IsRequired();
             builder.Property(p => p.Delete_at).HasColumnName("Delete_at").HasColumnType("datetime");
             builder.Property(p => p.StoreId).HasColumnName("StoreId").HasColumnType("int");

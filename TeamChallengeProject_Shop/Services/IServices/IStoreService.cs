@@ -4,12 +4,12 @@ namespace TeamChallengeProject_Shop.Services.IServices
 {
     public interface IStoreService
     {
-        Store Get(int id);
-        Store Get(string name);
-        ICollection<Store> GetAll();
-        Store Update(Store store);
-        Store Create(Store store);
-        bool Delete(Store store);
-        bool GetExists(string name);
+        Store GetStore(int id);
+        Store GetStore(string name);
+        ICollection<Store> GetStores();
+        Store UpdateStore(Store store);
+        Store CreateStore(Store store);
+        bool DeleteStore(Store store);
+        bool GetStoreExists(string name);
     }
 }

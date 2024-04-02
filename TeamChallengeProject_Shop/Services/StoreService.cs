@@ -13,39 +13,39 @@ namespace TeamChallengeProject_Shop.Services
             _db = db;
         }
 
-        public Store Create(Store store)
+        public Store CreateStore(Store store)
         {
-            return _db.CreateData(store);
+            return _db.CreateStoreData(store);
         }
 
-        public bool Delete(Store store)
+        public bool DeleteStore(Store store)
         {
-            return _db.DeleteData(store);
+            return _db.DeleteStoreData(store);
         }
 
-        public Store Get(int id)
+        public Store GetStore(int id)
         {
-            return _db.GetData(id);
+            return _db.GetStoreData(id);
         }
 
-        public Store Get(string name)
+        public Store GetStore(string name)
         {
-            return _db.GetData(name);
+            return _db.GetStoreData(name);
         }
 
-        public ICollection<Store> GetAll()
+        public ICollection<Store> GetStores()
         {
-            return _db.GetAllData();
+            return _db.GetStoresData();
         }
 
-        public bool GetExists(string name)
+        public bool GetStoreExists(string name)
         {
-            return _db.GetExistsData(name);
+            return _db.GetStoreExistsData(name);
         }
 
-        public Store Update(Store store)
+        public Store UpdateStore(Store store)
         {
-            return _db.UpdateData(store);
+            return _db.UpdateStoreData(store);
         }
     }
 }

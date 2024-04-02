@@ -12,41 +12,41 @@ namespace TeamChallengeProject_Shop.Data.Services
             _db = db;
         }
 
-        public Store CreateData(Store store)
+        public Store CreateStoreData(Store store)
         {
             _db.Stores.Add(store);
             _db.SaveChanges();
             return _db.Stores.Where(s => s.Name == store.Name).FirstOrDefault();
         }
 
-        public bool DeleteData(Store store)
+        public bool DeleteStoreData(Store store)
         {
             _db.Stores.Remove(store);
             _db.SaveChanges();
-            return _db.Stores.Where(s => s.Equals(store)).Any() == null ? true : false;
+            return _db.Stores.Where(s => s.Equals(store)).Any() != null ? true : false;
         }
 
-        public ICollection<Store> GetAllData()
+        public ICollection<Store> GetStoresData()
         {
             return _db.Stores.ToList();
         }
 
-        public Store GetData(int id)
+        public Store GetStoreData(int id)
         {
             return _db.Stores.Where(s => s.StoreId == id).FirstOrDefault();
         }
 
-        public Store GetData(string name)
+        public Store GetStoreData(string name)
         {
             return _db.Stores.Where(s => s.Name == name).FirstOrDefault();
         }
 
-        public bool GetExistsData(string name)
+        public bool GetStoreExistsData(string name)
         {
             return _db.Stores.Where(s =>s.Name == name).Any();
         }
 
-        public Store UpdateData(Store store)
+        public Store UpdateStoreData(Store store)
         {
             _db.Stores.Update(store);
             _db.SaveChanges();

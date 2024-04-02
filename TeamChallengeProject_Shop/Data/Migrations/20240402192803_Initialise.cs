@@ -17,9 +17,9 @@ namespace TeamChallengeProject_Shop.Data.Migrations
                 {
                     StoreId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Create_at = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Delete_at = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    Create_at = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Delete_at = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,26 +27,26 @@ namespace TeamChallengeProject_Shop.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StoreId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(150)", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    PickUp = table.Column<bool>(type: "bit", nullable: false),
-                    Delivery = table.Column<bool>(type: "bit", nullable: false),
-                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Delete_at = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PickUp = table.Column<byte>(type: "tinyint", nullable: false),
+                    Delivery = table.Column<byte>(type: "tinyint", nullable: false),
+                    Created_at = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Delete_at = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Product_Stores_StoreId",
+                        name: "FK_Products_Stores_StoreId",
                         column: x => x.StoreId,
                         principalTable: "Stores",
                         principalColumn: "StoreId",
@@ -54,8 +54,8 @@ namespace TeamChallengeProject_Shop.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_StoreId",
-                table: "Product",
+                name: "IX_Products_StoreId",
+                table: "Products",
                 column: "StoreId");
         }
 
@@ -63,7 +63,7 @@ namespace TeamChallengeProject_Shop.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Stores");

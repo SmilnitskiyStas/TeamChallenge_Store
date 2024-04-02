@@ -12,8 +12,8 @@ using TeamChallengeProject_Shop.Data;
 namespace TeamChallengeProject_Shop.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240329054531_UpdateStore")]
-    partial class UpdateStore
+    [Migration("20240402192803_Initialise")]
+    partial class Initialise
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,67 +29,81 @@ namespace TeamChallengeProject_Shop.Data.Migrations
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ProductId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime")
+                        .HasColumnName("Created_at");
 
                     b.Property<DateTime>("Delete_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime")
+                        .HasColumnName("Delete_at");
 
-                    b.Property<bool>("Delivery")
-                        .HasColumnType("bit");
+                    b.Property<byte>("Delivery")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("Delivery");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text")
+                        .HasColumnName("Description");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(150)")
+                        .HasColumnName("Name");
 
-                    b.Property<bool>("PickUp")
-                        .HasColumnType("bit");
+                    b.Property<byte>("PickUp")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("PickUp");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money")
+                        .HasColumnName("Price");
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Quantity");
 
                     b.Property<int>("StoreId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("StoreId");
 
                     b.HasKey("ProductId");
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("TeamChallengeProject_Shop.Models.Store", b =>
                 {
                     b.Property<int>("StoreId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("StoreId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StoreId"));
 
                     b.Property<DateTime>("Create_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime")
+                        .HasColumnName("Create_at");
 
                     b.Property<DateTime>("Delete_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime")
+                        .HasColumnName("Delete_at");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnName("Name");
 
                     b.HasKey("StoreId");
 
-                    b.ToTable("Stores");
+                    b.ToTable("Stores", (string)null);
                 });
 
             modelBuilder.Entity("TeamChallengeProject_Shop.Models.Product", b =>
