@@ -18,7 +18,8 @@ namespace TeamChallengeProject_Shop.Config
             builder.Property(p => p.Delivery).HasColumnName("Delivery").HasColumnType("tinyint").IsRequired();
             builder.Property(p => p.Created_at).HasColumnName("Created_at").HasColumnType("datetime").IsRequired();
             builder.Property(p => p.Delete_at).HasColumnName("Delete_at").HasColumnType("datetime");
-            builder.Property(p => p.StoreId).HasColumnName("StoreId").HasColumnType("int");
+            builder.Property(p => p.StoreId).HasColumnName("StoreId").HasColumnType("int").IsRequired();
+            builder.Property(p => p.CategoryId).HasColumnName("CategoryId").HasColumnType("int").IsRequired();
 
             builder.HasOne(p => p.Store)
                 .WithMany(s => s.Products)
@@ -26,10 +27,10 @@ namespace TeamChallengeProject_Shop.Config
                 .OnDelete(DeleteBehavior.Cascade)       // Видалення із бази
                 .HasPrincipalKey(s => s.StoreId);       // Посилання на пов'язану сутність в іншій таблиці (Stores=>StoreId)
 
-            //builder.HasOne(p => p.ProductCategory)
-            //    .WithMany(pc => pc.Products)
-            //    .HasForeignKey(p => p.ProductId)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(p => p.Category)
+                .WithOne(c => c.Product)
+                .HasForeignKey<Product>(p => p.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

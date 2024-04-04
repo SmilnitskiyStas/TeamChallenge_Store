@@ -8,7 +8,7 @@ using TeamChallengeProject_Shop.Services.IServices;
 
 namespace TeamChallengeProject_Shop.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/products")]
     [ApiController]
     public class ProductController : ControllerBase
     {

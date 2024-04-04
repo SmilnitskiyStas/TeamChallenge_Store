@@ -12,6 +12,6 @@ namespace TeamChallengeProject_Shop.Models
         public int ParentId { get; set; }
         public DateTime Create_at { get; set; }
         public DateTime Delete_at { get; set; }
-        public List<ProductCategory> ProductCategory { get; set; }
+        public Product Product { get; set; }
     }
 }
