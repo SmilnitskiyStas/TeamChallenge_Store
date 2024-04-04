@@ -25,6 +25,11 @@ namespace TeamChallengeProject_Shop.Config
                 .HasForeignKey(p => p.StoreId)
                 .OnDelete(DeleteBehavior.Cascade)       // Видалення із бази
                 .HasPrincipalKey(s => s.StoreId);       // Посилання на пов'язану сутність в іншій таблиці (Stores=>StoreId)
+
+            //builder.HasOne(p => p.ProductCategory)
+            //    .WithMany(pc => pc.Products)
+            //    .HasForeignKey(p => p.ProductId)
+            //    .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

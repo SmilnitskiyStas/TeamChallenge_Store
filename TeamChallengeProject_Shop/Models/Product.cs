@@ -25,5 +25,6 @@ namespace TeamChallengeProject_Shop.Models
         public DateTime Delete_at { get; set; }
 
         public Store Store { get; set; }
+        public List<ProductCategory> ProductCategory { get; set; }
     }
 }

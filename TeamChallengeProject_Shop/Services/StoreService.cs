@@ -18,9 +18,9 @@ namespace TeamChallengeProject_Shop.Services
             return _db.CreateStoreData(store);
         }
 
-        public bool DeleteStore(Store store)
+        public bool DeleteStore(int storeId)
         {
-            return _db.DeleteStoreData(store);
+            return _db.DeleteStoreData(storeId);
         }
 
         public Store GetStore(int id)

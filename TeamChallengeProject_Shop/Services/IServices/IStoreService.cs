@@ -9,7 +9,7 @@ namespace TeamChallengeProject_Shop.Services.IServices
         ICollection<Store> GetStores();
         Store UpdateStore(Store store);
         Store CreateStore(Store store);
-        bool DeleteStore(Store store);
+        bool DeleteStore(int storeId);
         bool GetStoreExists(string name);
     }
 }

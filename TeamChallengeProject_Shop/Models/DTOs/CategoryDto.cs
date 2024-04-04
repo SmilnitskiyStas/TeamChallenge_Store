@@ -1,17 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TeamChallengeProject_Shop.Models
+﻿
+namespace TeamChallengeProject_Shop.Models.DTOs
 {
-    public class Category
+    public class CategoryDto
     {
-        [Key]
-        [Required]
         public int CategoryId { get; set; }
-        [Required]
         public string Name { get; set; }
         public int ParentId { get; set; }
         public DateTime Create_at { get; set; }
         public DateTime Delete_at { get; set; }
-        public List<ProductCategory> ProductCategory { get; set; }
     }
 }

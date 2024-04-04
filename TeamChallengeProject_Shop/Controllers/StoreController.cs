@@ -23,7 +23,6 @@ namespace TeamChallengeProject_Shop.Controllers
         }
 
         [HttpGet]
-        [Route("")]
         public async Task<IActionResult> GetStores()
         {
             var stores = _mapper.Map<List<StoreDto>>(_storeService.GetStores());
@@ -47,8 +46,8 @@ namespace TeamChallengeProject_Shop.Controllers
         }
 
         [HttpPost]
-        [Route("create")]
-        public IActionResult CreateStore(StoreDto store)
+        [Route("create/")]
+        public IActionResult CreateStore([FromBody] StoreDto store)
         {
             if (!ModelState.IsValid)
             {
@@ -88,7 +87,7 @@ namespace TeamChallengeProject_Shop.Controllers
 
             var store = _mapper.Map<Store>(storeUpdate);
 
-            if (storeUpdate == null)
+            if (storeUpdate is null)
             {
                 return BadRequest(ModelState);
             }
@@ -99,6 +98,12 @@ namespace TeamChallengeProject_Shop.Controllers
             }
 
             var updateModel = _storeService.UpdateStore(store);
+
+            if (updateModel is null)
+            {
+                ModelState.AddModelError("", "Something went wrong while saving!");
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
 
             return Ok(updateModel);
         }
@@ -114,7 +119,7 @@ namespace TeamChallengeProject_Shop.Controllers
 
             var store = _mapper.Map<Store>(_storeService.GetStore(storeId));
 
-            if (storeUpdate == null)
+            if (storeUpdate is null)
             {
                 return BadRequest(ModelState);
             }
@@ -132,16 +137,41 @@ namespace TeamChallengeProject_Shop.Controllers
             store.Create_at = storeDto.Create_at;
             store.Delete_at = storeDto.Delete_at;
 
-            return Ok(_storeService.UpdateStore(store));
+            if (_storeService.UpdateStore(store) is null)
+            {
+                ModelState.AddModelError("", "Something went wrong while saving!");
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return Ok(store);
         }
 
         [HttpDelete]
         [Route("delete/{storeId:int}")]
         public IActionResult DeleteStore(int storeId)
         {
-            var store = _storeService.GetStore(storeId);
-            var delete = _storeService.DeleteStore(store);
-            return Ok(delete);
+            if (storeId <= 0)
+            {
+                return BadRequest();
+            }
+
+            if (_storeService.GetStoreExists(_storeService.GetStore(storeId).Name))
+            {
+                return NotFound();
+            }
+
+            if (_storeService.DeleteStore(storeId))
+            {
+
+            }
+
+            if (_storeService.DeleteStore(storeId))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving!");
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return Ok();
         }
     }
 }

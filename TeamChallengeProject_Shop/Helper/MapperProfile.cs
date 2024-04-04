@@ -12,6 +12,8 @@ namespace TeamChallengeProject_Shop.Helper
             CreateMap<StoreDto, Store>();
             CreateMap<Product, ProductDto>();
             CreateMap<ProductDto, Product>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>();
         }
     }
 }

@@ -29,6 +29,8 @@ namespace TeamChallengeProject_Shop
             builder.Services.AddScoped<IStoreService, StoreService>();
             builder.Services.AddScoped<IProductDataService, ProductDataService>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ICategoryDataService, CategoryDataService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
             
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

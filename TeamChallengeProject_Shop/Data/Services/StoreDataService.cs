@@ -19,8 +19,9 @@ namespace TeamChallengeProject_Shop.Data.Services
             return _db.Stores.Where(s => s.Name == store.Name).FirstOrDefault();
         }
 
-        public bool DeleteStoreData(Store store)
+        public bool DeleteStoreData(int storeId)
         {
+            var store = _db.Stores.Where(s => s.StoreId.Equals(storeId)).FirstOrDefault();
             _db.Stores.Remove(store);
             _db.SaveChanges();
             return _db.Stores.Where(s => s.Equals(store)).Any() != null ? true : false;

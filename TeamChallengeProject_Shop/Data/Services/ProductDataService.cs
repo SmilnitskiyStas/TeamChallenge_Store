@@ -25,6 +25,7 @@ namespace TeamChallengeProject_Shop.Data.Services
         {
             var product = _db.Products.Where(p => p.ProductId == productId).FirstOrDefault();
             _db.Remove(product);
+            _db.SaveChanges();
 
             return _db.Products.Where(p => p.Equals(product)).Any() != null ? true : false;
         }
@@ -46,14 +47,13 @@ namespace TeamChallengeProject_Shop.Data.Services
 
         public ICollection<Product> GetProductsData()
         {
-            var pro = _db.Products.ToList();
-            return pro;
+            return _db.Products.ToList();
         }
 
         public Product UpdateProductData(Product product)
         {
             _db.Products.Update(product);
-
+            _db.SaveChanges();
             return _db.Products.Where(p => p.Name.Equals(product.Name)).FirstOrDefault();
         }
     }
